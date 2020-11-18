@@ -1,0 +1,14 @@
+proxies:
+- regx: 'quay.io/.*/blobs/sha256.*'
+hijack_https:
+  cert: /certs/df.crt
+  key: /certs/df.key
+  hosts:
+  - regx: quay.io
+    insecure: true
+logConfig:
+  # Log file path
+  path: /dev/stdout
+node:
+- supernode:8002
+

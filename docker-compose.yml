@@ -1,0 +1,20 @@
+version: '3'
+services:
+  supernode:
+    build:
+      context: ./
+    command: supernode 
+  dfdaemon1: &dfdaemon
+    build:
+      context: ./
+    privileged: true
+    command: /dfdaemon.sh
+    volumes:
+    - ./certs:/certs
+    - ./dfdaemon.yml:/dfdaemon.yml
+    - ./daemon.json:/etc/docker/daemon.json
+    - ./dfdaemon.sh:/dfdaemon.sh
+    depends_on: 
+    - supernode
+  dfdaemon2:
+    <<: *dfdaemon
